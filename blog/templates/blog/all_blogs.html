@@ -1,0 +1,12 @@
+{% extends 'portfolio/base.html' %}
+{% block content %}
+<h2>Andrew written {{ blogs.count }} blog{{ blogs.count|pluralize }}</h2>
+{% for blog in blogs %}
+<a href="{% url 'blog:detail' blog.id %}"><h2>{{ blog.title }}</h2></a><br>
+<p>{{ blog.date|date:'M d Y' }}</p><br>
+<p>{{ blog.description|safe|truncatechars:100 }}</p>
+<!-- параметр в дате добавляет ее формат -->
+<!-- параметр safe делает так чтобы в базе данных можно было добавлять тег хтмл и он отображался на странице,
+а другой тег ограничение в силволах  -->
+{% endfor %}
+{% endblock %}
